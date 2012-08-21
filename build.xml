@@ -1,0 +1,55 @@
+<project name="task" default="build">
+    <target name="init">
+        <property file="build.properties"/>
+        <property name="src.dir" location="${project.dir}/src"/>
+        <property name="build.dir" location="${project.dir}/build"/>
+        <property name="build.dist.dir" location="${build.dir}/dist"/>
+        <property name="build.classes.dir" location="${build.dir}/classes"/>
+        <property name="build.lib.dir" location="${build.dir}/lib"/>
+        <property name="javac.debug" value="on"/>
+        <property name="javac.debuglevel" value="lines"/>
+    </target>
+
+    <target name="build" depends="init, compile">
+        <mkdir dir="${build.dist.dir}"/>
+        <jar destfile="${build.dist.dir}/App.jar">
+            <fileset dir="${build.classes.dir}" includes="**/*.class"/>
+            <manifest>
+                <attribute name="Main-Class" value="ru.vladiev.Main"/>
+            </manifest>
+        </jar>
+
+
+        <echo file="./build/dist/input.txt">
+            2
+            2
+            3
+            4
+        </echo>
+
+
+        <echo file="./build/dist/start.sh">
+            #!/bin/sh
+            java -jar App.jar
+        </echo>
+    </target>
+
+
+    <target name="compile" depends="init">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}"
+               destdir="${build.classes.dir}"
+               debug="${javac.debug}"
+               debuglevel="${javac.debuglevel}"/>
+    </target>
+
+
+    <target name="clean" depends="init">
+        <delete dir="${build.dir}" failonerror="false"/>
+
+    </target>
+
+    <target name="rebuild" depends="clean, build"/>
+
+
+</project>
