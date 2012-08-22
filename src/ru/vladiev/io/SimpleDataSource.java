@@ -14,17 +14,17 @@ public class SimpleDataSource implements DataSource {
     public SimpleDataSource(final Reader reader) {
         final Scanner scanner = new Scanner(reader);
         if (!scanner.hasNextInt() || (n = scanner.nextInt()) <= 0) {
-            throw new RuntimeException(" invalid input data ");
+            throw new RuntimeException(" invalid input data,  ");
         }
         final int[] data = new int[n];
         for (int i = 0; i < n; i++) {
             if (!scanner.hasNextInt() || (data[i] = scanner.nextInt()) <= 0) {
-                throw new RuntimeException(" invalid input data ");
+                throw new RuntimeException(" invalid input data, ");
             }
         }
 
         if (!scanner.hasNext() || (b = scanner.nextInt()) < 0) {
-            throw new RuntimeException(" invalid input data ");
+            throw new RuntimeException(" invalid input data, ");
         }
         sizes = data;
     }

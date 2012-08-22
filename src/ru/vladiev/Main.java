@@ -27,10 +27,10 @@ public class Main {
 
         try {
             reader.close();
-            printStream.close();
         } catch (IOException e) {
             // do nothing
         }
+        printStream.close();
     }
 
     private static Reader getReader() {
@@ -52,6 +52,4 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
-
-
 }

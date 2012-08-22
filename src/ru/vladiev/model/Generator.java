@@ -25,7 +25,7 @@ public class Generator {
             defineScriptFunction(jsEngine);
             invokeScriptFunction(jsEngine);
         } catch (ScriptException e) {
-
+            throw new RuntimeException(e);
         }
     }
 
@@ -43,8 +43,6 @@ public class Generator {
         sb.append("}");
         engine.put("b", source.getB());
         engine.put("destination", destination);
-
-
         engine.eval(sb.toString());
     }
 

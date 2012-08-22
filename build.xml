@@ -12,25 +12,32 @@
 
     <target name="build" depends="init, compile">
         <mkdir dir="${build.dist.dir}"/>
-        <jar destfile="${build.dist.dir}/App.jar">
+        <jar destfile="${build.dist.dir}/app.jar">
             <fileset dir="${build.classes.dir}" includes="**/*.class"/>
             <manifest>
-                <attribute name="Main-Class" value="ru.vladiev.Main"/>
+                <attribute name="main-class" value="ru.vladiev.Main"/>
             </manifest>
         </jar>
 
 
         <echo file="./build/dist/input.txt">
-            2
+            4
             2
             3
-            4
+            3
+            2
+            10
         </echo>
 
 
         <echo file="./build/dist/start.sh">
             #!/bin/sh
-            java -jar App.jar
+            java -jar app.jar
+        </echo>
+
+        <echo file="./build/dist/start.bat">
+
+            java -jar app.jar
         </echo>
     </target>
 
